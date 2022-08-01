@@ -222,14 +222,6 @@ export class GISTypeOrmCrudService<T> extends BaseTypeOrmCrudService<T> {
       });
     }
 
-    if (fgeo === 'geojson') {
-      for (const d of data) {
-        if (d[geoColumn.propertyName]) {
-          d[geoColumn.propertyName] = arcgis.parse(d[geoColumn.propertyName]);
-        }
-      }
-    }
-
     if (moduleOptions.hook && moduleOptions.hook.crudService) {
       await moduleOptions.hook.crudService.call(
         this,
@@ -326,12 +318,6 @@ export class GISTypeOrmCrudService<T> extends BaseTypeOrmCrudService<T> {
         if (geometries.length) {
           result[geoColumn.propertyName] = geometries[0];
         }
-      }
-
-      if (req.parsed.fGeo === 'geojson') {
-        result[geoColumn.propertyName] = arcgis.parse(
-          result[geoColumn.propertyName],
-        );
       }
     }
     if (moduleOptions.hook && moduleOptions.hook.crudService) {
@@ -475,13 +461,6 @@ export class GISTypeOrmCrudService<T> extends BaseTypeOrmCrudService<T> {
           });
         }
       }
-
-      if (req.parsed.fGeo === 'geojson') {
-        data.forEach(d => {
-          if (d[geoColumn.propertyName])
-            d[geoColumn.propertyName] = arcgis.parse(d[geoColumn.propertyName]);
-        });
-      }
     }
     if (moduleOptions.hook && moduleOptions.hook.crudService) {
       await moduleOptions.hook.crudService.call(this, 'createMany', [
@@ -527,12 +506,6 @@ export class GISTypeOrmCrudService<T> extends BaseTypeOrmCrudService<T> {
         if (geometries.length) {
           result[geoColumn.propertyName] = geometries[0];
         }
-      }
-
-      if (req.parsed.fGeo === 'geojson') {
-        result[geoColumn.propertyName] = arcgis.parse(
-          result[geoColumn.propertyName],
-        );
       }
     }
 
