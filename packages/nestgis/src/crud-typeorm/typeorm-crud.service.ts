@@ -125,13 +125,15 @@ export class GISTypeOrmCrudService<T> extends BaseTypeOrmCrudService<T> {
     pAlias = this.alias,
   ) {
     const geoColumn = this.getGeometryColumn();
-
-    const { geometries } = await this.geometryService.project({
-      inSR: bbox.spatialReference,
-      geometryType: GeometryTypeEnum.Envelope,
-      geometries: [bbox],
-    });
-    const pGeo = geometries[0] as arcgis.Polygon;
+    let pGeo: arcgis.Geometry = bbox;
+    if (!this.equalSrs(bbox.spatialReference, moduleOptions.srs)) {
+      const { geometries } = await this.geometryService.project({
+        inSR: bbox.spatialReference,
+        geometryType: GeometryTypeEnum.Envelope,
+        geometries: [bbox],
+      });
+      pGeo = geometries[0] as arcgis.Polygon;
+    }
     let wktGeo = wkt.convert(arcgis.parse(pGeo));
     if (wktGeo) {
       const alias = pAlias ? pAlias + '.' : '';
