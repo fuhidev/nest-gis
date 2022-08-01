@@ -1,0 +1,31 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.KhuBaoTonService = void 0;
+const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const khu_bao_ton_entity_1 = require("./khu-bao-ton.entity");
+const nestjs_gis_1 = require("../../../../../dist");
+let KhuBaoTonService = class KhuBaoTonService extends nestjs_gis_1.GISTypeOrmCrudService {
+    constructor(repo) {
+        super(repo);
+    }
+};
+KhuBaoTonService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(khu_bao_ton_entity_1.KhuBaoTonEntity)),
+    __metadata("design:paramtypes", [Object])
+], KhuBaoTonService);
+exports.KhuBaoTonService = KhuBaoTonService;
+//# sourceMappingURL=khu-bao-ton.service.js.map
