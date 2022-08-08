@@ -2,7 +2,7 @@ import { Repository } from 'typeorm';
 import { SpatialMethodEnum } from '../../crud-typeorm';
 
 export abstract class BaseRunner {
-  repo: Repository<any>;
+  constructor(protected repo: Repository<any>){}
   abstract spatialQuery(params: {
     alias: string;
     propertyName: string;

@@ -2,9 +2,6 @@ import { SpatialMethodEnum } from '../../../crud-typeorm';
 import { BaseRunner } from '../base-runner';
 
 export class PostgresRunner extends BaseRunner {
-  constructor() {
-    super();
-  }
   async getGeneratedColumn(params: { column: string }): Promise<boolean> {
     const { column } = params;
     const response = await this.repo.manager

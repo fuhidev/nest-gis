@@ -32,6 +32,7 @@ export class GISTypeOrmCrudService<T> extends BaseTypeOrmCrudService<T> {
     super(repo);
     this.runner = runnerFactory({
       type: repo.manager.connection.driver.options.type,
+      repo,
     });
   }
 
